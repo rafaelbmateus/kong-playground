@@ -1,0 +1,7 @@
+# a very minimal declarative config file
+_format_version: "2.1"
+_transform: true
+
+consumers:
+- username: user123
+  custom_id: SOME_CUSTOM_ID

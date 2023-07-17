@@ -1,5 +1,52 @@
 # Kong Gateway
 
+[Kong gateway](https://github.com/Kong/kong) is a cloud-native, platform-agnostic,
+scalable API Gateway distinguished for its high performance and extensibility via plugins.
+
+This repository is an playground to explore kong gateway features.
+
+# Services and Routes Concepts
+
+Kong Gateway administrators work with an object model to define their desired traffic management policies.
+Two important objects in that model are services and routes.
+Services and routes are configured in a coordinated manner to define the routing path
+that requests and responses will take through the system.
+
+![](https://docs.konghq.com/assets/images/docs/getting-started-guide/route-and-service.png)
+
+## What is a service
+
+In Kong Gateway, a service is an abstraction of an existing upstream application.
+Services can store collections of objects like plugin configurations, and policies, and they can be associated with routes.
+
+When defining a service, the administrator provides a name and the upstream application connection information.
+The connection details can be provided in the url field as a single string, or by providing individual values for protocol, host, port, and path individually.
+
+Services have a one-to-many relationship with upstream applications, which allows administrators to create sophisticated traffic management behaviors.
+
+## What is a route
+
+A route is a path to a resource within an upstream application. Routes are added to services to allow access to the underlying application.
+In Kong Gateway, routes typically map to endpoints that are exposed through the Kong Gateway application.
+Routes can also define rules that match requests to associated services. Because of this, one route can reference multiple endpoints.
+A basic route should have a name, path or paths, and reference an existing service.
+
+You can also configure routes with:
+- Protocols: The protocol used to communicate with the upstream application.
+- Hosts: Lists of domains that match a route
+- Methods: HTTP methods that match a route
+- Headers: Lists of values that are expected in the header of a request
+- Redirect status codes: HTTPS status codes
+- Tags: Optional set of strings to group routes with
+
+See [Routes](https://docs.konghq.com/gateway/3.3.x/key-concepts/routes/) for a description of how Kong Gateway routes requests.
+
+## Managing services and routes
+
+The following tutorial walks through managing and testing services and routes using the Kong Gateway Admin API.
+Kong Gateway also offers other options for configuration management including
+[Kong Konnect](https://docs.konghq.com/konnect) and [decK](https://docs.konghq.com/deck/latest).
+
 # Running Kong Gateway
 
 To start the kong gateway using docker compose:
@@ -16,7 +63,7 @@ make kong-postgres
 
 ## Get Started
 
-https://docs.konghq.com/gateway/latest/get-started
+This session follow the [get started](https://docs.konghq.com/gateway/3.3.x/get-started) tutorial.
 
 ```console
 curl --head localhost:8001
